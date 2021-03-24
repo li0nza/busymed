@@ -19,7 +19,9 @@ class _ProductsWidgetState extends State<ProductsWidget> {
   void initState() {
     super.initState();
     productsRepository = Provider.of<ProductsRepository>(context, listen: false);
-    productsRepository.fetchProducts();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      productsRepository.fetchProducts();
+    });
   }
 
   Widget _getEmptyState() {
